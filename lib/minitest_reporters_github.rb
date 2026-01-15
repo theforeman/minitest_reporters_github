@@ -9,7 +9,9 @@ require 'minitest/reporters'
 
 # Simple reporter designed for Github Actions
 class MinitestReportersGithub < Minitest::Reporters::BaseReporter
-  ESCAPE_MAP = { '%' => '%25', "\n" => '%0A', "\r" => '%0D' }.freeze
+  # based on https://github.com/actions/toolkit/blob/cee7d92d1d02e3107c9b1387b9690b89096b67be/packages/core/src/command.ts#L92-L105
+  ESCAPE_DATA_MAP = { '%' => '%25', "\n" => '%0A', "\r" => '%0D' }.freeze
+  ESCAPE_PROPERTY_MAP = ESCAPE_DATA_MAP.merge({ ':' => '%3A', ',' => '%2C'}).freeze
 
   def start
     super
@@ -36,18 +38,24 @@ class MinitestReportersGithub < Minitest::Reporters::BaseReporter
   private
 
   def to_annotation(test, failure_type)
-    message = "#{failure_type}: #{test.name}\n\n#{test.failure.message}"
+    title = "#{test.class_name}##{test.name}"
+    message = "#{failure_type}: #{title}\n\n#{test.failure.message}"
     line_number = location(test.failure).split(":").last
 
-    "\n::error file=%<file>s,line=%<line>d::%<message>s\n" % {
+    "\n::error file=%<file>s,line=%<line>d,title=%<title>s::%<message>s\n" % {
       file: get_relative_path(test),
       line: line_number,
-      message: github_escape(message.rstrip),
+      title: github_property_escape(title),
+      message: github_data_escape(message.rstrip),
     }
   end
 
-  def github_escape(string)
-    string.gsub(Regexp.union(ESCAPE_MAP.keys), ESCAPE_MAP)
+  def github_property_escape(string)
+    string.gsub(Regexp.union(ESCAPE_PROPERTY_MAP.keys), ESCAPE_PROPERTY_MAP)
+  end
+
+  def github_data_escape(string)
+    string.gsub(Regexp.union(ESCAPE_DATA_MAP.keys), ESCAPE_DATA_MAP)
   end
 
   def get_source_location(result)

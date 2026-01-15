@@ -6,6 +6,6 @@ class MinitestReportersGithubTest < Minitest::Test
     test_filename = File.join(fixtures_directory, 'github_actions_test.rb')
     output = `ruby #{test_filename} 2>&1`
     refute_match 'test_assertion', output
-    assert_match '::error file=test/fixtures/github_actions_test.rb,line=15::Failure: test_fail', output
+    assert_match '::error file=test/fixtures/github_actions_test.rb,line=15,title=TestClass#test_fail::Failure: TestClass#test_fail', output
   end
 end
