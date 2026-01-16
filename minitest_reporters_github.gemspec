@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   # Pinned to a minor version because the feature may be added in a minor
   # https://github.com/minitest-reporters/minitest-reporters/pull/332
-  s.add_dependency 'minitest-reporters', '~> 1.6.0'
+  s.add_dependency 'minitest-reporters', '>= 1.6.0', '< 1.8.0'
 
   s.add_development_dependency 'rake', '~> 13.0'
 
