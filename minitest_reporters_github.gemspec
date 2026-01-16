@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = 'A separate gem until https://github.com/minitest-reporters/minitest-reporters/issues/330 is resolved'
   s.license     = 'MIT'
 
-  s.required_ruby_version = '>= 2.7', '< 4'
+  s.required_ruby_version = '>= 2.7', '< 5'
 
   # Pinned to a minor version because the feature may be added in a minor
   # https://github.com/minitest-reporters/minitest-reporters/issues/330
