@@ -2,9 +2,9 @@ Gem::Specification.new do |s|
   s.name        = 'minitest_reporters_github'
   s.version     = '1.0.1'
   s.authors     = ['Ewoud Kohl van Wijngaarden', 'Earlopain']
-  s.homepage    = 'https://github.com/ekohl/minitest_reporters_github'
+  s.homepage    = 'https://github.com/theforeman/minitest_reporters_github'
   s.summary     = 'The GitHub Actions reporter for minitest-reporters'
-  s.description = 'A separate gem until https://github.com/minitest-reporters/minitest-reporters/pull/332 is merged'
+  s.description = 'A separate gem until https://github.com/minitest-reporters/minitest-reporters/issues/330 is resolved'
   s.license     = 'MIT'
 
   s.required_ruby_version = '>= 2.7', '< 4'
