@@ -69,7 +69,7 @@ class MinitestReportersGithub < Minitest::Reporters::BaseReporter
   def location(exception)
     last_before_assertion = ''
     exception.backtrace.reverse_each do |s|
-      break if s =~ /in .(assert|refute|flunk|pass|fail|raise|must|wont)/
+      break if s =~ /in .(Minitest::Assertions#)?(assert|refute|flunk|pass|fail|raise|must|wont)/
 
       last_before_assertion = s
     end
