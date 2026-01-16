@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'minitest_reporters_github'
 
+Minitest.load_plugins
 Minitest::Reporters.use! MinitestReportersGithub.new
 
 class TestClass < Minitest::Test
