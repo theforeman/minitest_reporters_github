@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.7', '< 4'
 
   # Pinned to a minor version because the feature may be added in a minor
-  # https://github.com/minitest-reporters/minitest-reporters/pull/332
+  # https://github.com/minitest-reporters/minitest-reporters/issues/330
   s.add_dependency 'minitest-reporters', '>= 1.6.0', '< 1.8.0'
 
   s.add_development_dependency 'rake', '~> 13.0'
